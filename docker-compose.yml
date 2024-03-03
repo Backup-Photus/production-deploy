@@ -1,0 +1,46 @@
+version: '3'
+services:
+  db:
+    image: mysql 
+    env_file:
+      - db.env
+    volumes:
+        - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+        - mysql_data:/var/lib/mysql 
+    networks:
+     backup:
+      ipv4_address: "172.0.0.2"
+
+  extractor:
+    image: extractor-micro
+    depends_on:
+      - db
+    env_file:
+      - extractor.env
+    networks:
+     backup:
+      ipv4_address: "172.0.0.3"
+      
+  api:
+    image: photus
+    ports:
+      - "8080:8080"
+    env_file:
+      - backup.env
+    depends_on:
+      - db
+      - extractor
+    volumes:
+      - /home/evendead/Pictures/Backup/:/data
+    networks:
+      backup:
+        ipv4_address: "172.0.0.4"
+networks:
+  backup:
+    ipam:
+      driver: default
+      config: 
+        - subnet : "172.0.0.0/24"
+volumes:
+  mysql_data:
+    external : true
