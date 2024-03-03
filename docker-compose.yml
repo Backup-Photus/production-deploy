@@ -29,7 +29,6 @@ services:
       - backup.env
     depends_on:
       - db
-      - extractor
     volumes:
       - /home/evendead/Pictures/Backup/:/data
     networks:

@@ -33,12 +33,10 @@ cd ..
 
 
 # Create volumes (if not available)
-docker volume create mysql_data_2
+docker volume create mysql_data
 
 # Start applications
-docker-compose up 
-
-
+docker-compose up  -d 
 
 
 # Clean ups 
