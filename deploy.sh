@@ -7,7 +7,7 @@ sudo apt install openjdk-17-jdk-headless
 export export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 
 # Dockerizing api-project
-git clone git@github.com:shreyasSarve/photus.git
+git clone git@github.com:Backup-Photus/photus.git
 cd photus
 
 ./mvnw clean
@@ -20,7 +20,7 @@ cd ..
 
 
 # Dockerrise extractor-project
-git clone git@github.com:shreyasSarve/extractor-microservice.git
+git clone git@github.com:Backup-Photus/extractor-microservice.git
 cd extractor-microservice
 
 ./mvnw clean
