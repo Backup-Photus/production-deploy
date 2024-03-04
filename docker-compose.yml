@@ -7,7 +7,7 @@ services:
     volumes:
         - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
         - ./health-check.sh:/health-check.sh
-        - mysql_data:/var/lib/mysql 
+        -  mysql_data:/var/lib/mysql 
     networks:
      backup:
       ipv4_address: "172.0.0.2"
@@ -21,7 +21,7 @@ services:
     image: shreyasssarve/extractor-microservice:v1.0.0
     depends_on:
       db:
-        condition: service_healthy
+          condition: service_healthy
     env_file:
       - extractor.env
     networks:
@@ -36,7 +36,7 @@ services:
       - backup.env
     depends_on:
       db:
-        condition: service_healthy
+          condition: service_healthy
     volumes:
       - /home/evendead/Pictures/Backup/:/data
     networks:
