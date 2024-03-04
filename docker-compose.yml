@@ -12,7 +12,7 @@ services:
       ipv4_address: "172.0.0.2"
 
   extractor:
-    image: extractor-micro
+    image: shreyasssarve/extractor-microservice
     depends_on:
       - db
     env_file:
@@ -22,7 +22,7 @@ services:
       ipv4_address: "172.0.0.3"
       
   api:
-    image: photus
+    image: shreyasssarve/photus
     ports:
       - "8080:8080"
     env_file:
