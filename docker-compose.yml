@@ -12,7 +12,7 @@ services:
       ipv4_address: "172.0.0.2"
 
   extractor:
-    image: shreyasssarve/extractor-microservice
+    image: shreyasssarve/extractor-microservice:v1.0.0
     depends_on:
       - db
     env_file:
