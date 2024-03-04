@@ -14,7 +14,7 @@ cd photus
 ./mvnw install
 ./mvnw package
 
-docker build -t photus:lastest .
+docker build -t photus:latest .
 
 cd ..
 
@@ -36,7 +36,7 @@ cd ..
 docker volume create mysql_data
 
 # Start applications
-docker-compose up  -d 
+# docker-compose up  -d 
 
 
 # Clean ups 
