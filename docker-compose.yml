@@ -10,11 +10,17 @@ services:
     networks:
      backup:
       ipv4_address: "172.0.0.2"
+    healthcheck:
+      test: ["CMD", "mysqladmin ping -h localhost -u root -p$MYSQL_ROOT_PASSWORD"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
   extractor:
     image: shreyasssarve/extractor-microservice:v1.0.0
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     env_file:
       - extractor.env
     networks:
@@ -28,7 +34,8 @@ services:
     env_file:
       - backup.env
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     volumes:
       - /home/evendead/Pictures/Backup/:/data
     networks:
