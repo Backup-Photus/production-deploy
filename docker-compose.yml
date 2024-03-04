@@ -6,12 +6,13 @@ services:
       - db.env
     volumes:
         - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+        - ./health-check.sh:/health-check.sh
         - mysql_data:/var/lib/mysql 
     networks:
      backup:
       ipv4_address: "172.0.0.2"
     healthcheck:
-      test: ["CMD", "mysqladmin ping -h localhost -u root -p$MYSQL_ROOT_PASSWORD"]
+      test: ["CMD-SHELL" , "./health-check.sh"]
       interval: 10s
       timeout: 5s
       retries: 10
